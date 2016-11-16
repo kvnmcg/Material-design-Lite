@@ -25,10 +25,8 @@ gulp.task('css', () => {
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer());
 
-    // Material Design Lite CSS
     // Material Icons fonts
     mdlStream = gulp.src([
-        './node_modules/material-design-lite/material.css',
         './node_modules/material-design-icons/iconfont/material-icons.css'
     ]);
 
