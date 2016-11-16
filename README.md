@@ -31,4 +31,4 @@ gulp
 Configuration can be found in `Gulpfile.js`.
 
 # Material Design Icons
-This project is set up to use the Material Design icon font.
+This project is set up to use the [Material Design Icon](http://google.github.io/material-design-icons/) font.
