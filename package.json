@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Material Design Lite project",
   "main": "public/index.php",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kvnmcg/material-design-lite.git"
+  },
   "author": "kvnmcg",
   "license": "ISC",
   "devDependencies": {
