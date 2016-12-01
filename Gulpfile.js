@@ -21,13 +21,13 @@ gulp.task('css', () => {
     let mdlStream;
 
     // Compile SCSS
-    sassStream = gulp.src('./dev/scss/**/*.scss')
+    sassStream = gulp.src('dev/scss/**/*.scss')
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer());
 
     // Material Icons fonts
     mdlStream = gulp.src([
-        './node_modules/material-design-icons/iconfont/material-icons.css'
+        'node_modules/material-design-icons/iconfont/material-icons.css'
     ]);
 
     // Merge the two streams and concat in to one CSS file
@@ -36,37 +36,37 @@ gulp.task('css', () => {
         .pipe(concat('app.css'))
         .pipe(cleanCss())
         .pipe(sourcemaps.write('', {addComment: false}))
-        .pipe(gulp.dest('./public/css'));
+        .pipe(gulp.dest('public/css'));
 });
 
 // Move Material Icon Fonts
 gulp.task('iconfont', () => {
-    gulp.src('./node_modules/material-design-icons/iconfont/MaterialIcons-Regular.*')
-        .pipe(gulp.dest('./public/css'));
+    gulp.src('node_modules/material-design-icons/iconfont/MaterialIcons-Regular.*')
+        .pipe(gulp.dest('public/css'));
 });
 
 // Image minification
 gulp.task('img', () => {
-    return gulp.src('./dev/img/*')
+    return gulp.src('dev/img/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('./public/img/'));
+        .pipe(gulp.dest('public/img/'));
 });
 
 // SVG minification
 gulp.task('svg', () => {
-    return gulp.src('./dev/svg/**/*.svg')
+    return gulp.src('dev/svg/**/*.svg')
         .pipe(svgmin({
             plugins: [
                 {removeDoctype: true},
                 {removeComments: true}
             ]
         }))
-        .pipe(gulp.dest('./public/svg'));
+        .pipe(gulp.dest('public/svg'));
 });
 
 // JSHint/Lint
 gulp.task('hint', () => {
-    return gulp.src('./dev/js/*.js')
+    return gulp.src('dev/js/*.js')
         .pipe(jshint({esnext: true}))
         .pipe(jshint.reporter(stylish))
 });
@@ -75,15 +75,15 @@ gulp.task('hint', () => {
 gulp.task('compress', (cb) => {
     pump([
             gulp.src([
-                './node_modules/material-design-lite/material.js',
-                './dev/js/*.js'
+                'node_modules/material-design-lite/material.js',
+                'dev/js/*.js'
             ]),
             sourcemaps.init(),
             babel({presets: ['es2015']}),
             concat('app.js'),
             uglify(),
             sourcemaps.write('', {addComment: false}),
-            gulp.dest('./public/js')
+            gulp.dest('public/js')
         ],
         cb
     );
@@ -91,10 +91,10 @@ gulp.task('compress', (cb) => {
 
 // Watch
 gulp.task('watch', () => {
-    gulp.watch('./dev/scss/**/*.scss', ['css']);
-    gulp.watch('./dev/img/**/*.*', ['img']);
-    gulp.watch('./dev/svg/**/*.svg', ['svg']);
-    gulp.watch('./dev/js/**/*.js', ['js']);
+    gulp.watch('dev/scss/**/*.scss', ['css']);
+    gulp.watch('dev/img/**', ['img']);
+    gulp.watch('dev/svg/**/*.svg', ['svg']);
+    gulp.watch('dev/js/**/*.js', ['js']);
 });
 
 // Default task
